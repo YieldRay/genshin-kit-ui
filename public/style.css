@@ -1,0 +1,62 @@
+html,
+body {
+    padding: 0;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+        Helvetica Neue, sans-serif;
+}
+
+@font-face {
+    font-family: gsfont;
+    src: url(/gsfont.ttf);
+}
+
+body {
+    font-family: gsfont;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: dark) {
+    html {
+        color-scheme: dark;
+    }
+    body {
+        color: white;
+        background: black;
+    }
+}
+
+progress {
+    --height: 0.5em;
+    --landsoul-shadow: #f4f4f5;
+    --landsoul-accent: #2563eb;
+    background-color: var(--landsoul-shadow);
+    border: none;
+    border-radius: var(--height);
+    color: var(--landsoul-accent);
+    height: var(--height);
+    line-height: var(--height);
+    overflow: hidden;
+    max-width: 100%;
+}
+progress::-moz-progress-bar {
+    background-color: var(--landsoul-accent);
+}
+progress::-webkit-progress-bar {
+    background-color: var(--landsoul-shadow);
+}
+progress::-webkit-progress-value {
+    background-color: var(--landsoul-accent);
+}
+
+header {
+    padding: 2rem 1rem;
+}

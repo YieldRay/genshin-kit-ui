@@ -1,0 +1,113 @@
+.starTitle::before {
+    content: "@";
+}
+
+.role {
+    background-color: #f0eada;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.role .nickname {
+    font-size: 120%;
+}
+
+.role .roleInfo {
+    color: #969995;
+}
+
+.section {
+    margin: 1rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.stats {
+    text-align: center;
+}
+.stats div:first-child {
+    font-size: 120%;
+    color: #313132;
+}
+.stats div:last-child {
+    font-size: 80%;
+    color: #969995;
+}
+
+.xScroll {
+    display: flex;
+    overflow-x: auto;
+}
+.avatar {
+}
+.avatarCard {
+}
+.avatarImg {
+    max-width: 160px;
+}
+.avatarLevel {
+    text-align: center;
+}
+
+.worlds {
+    padding: 1rem;
+}
+.world {
+    text-align: center;
+    padding: 1rem;
+    color: #fff;
+    min-width: 180px;
+}
+
+.slider {
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    margin: auto;
+}
+.sliderItem {
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    margin-right: 1rem;
+}
+.homeTitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #fff;
+    padding: 0.5rem 1rem;
+}
+.homeIcon {
+    max-height: 2rem;
+}
+.homeName {
+    display: flex;
+    align-items: center;
+}
+.homeInfo {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+.homeStat {
+    text-align: center;
+    padding: 1rem;
+}
+
+.homeStat div:first-child {
+    font-size: 120%;
+    color: #eee;
+}
+.homeStat div:last-child {
+    font-size: 80%;
+    color: #ccc;
+}
