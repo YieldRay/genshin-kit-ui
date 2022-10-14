@@ -4,8 +4,9 @@ import { Form, FormField, Box, Button, TextInput, Page } from "grommet";
 import { isValidUid, isValidCnUid, isValidOsUid } from "../lib/uid";
 import alert from "../components/alert";
 
+const initUID = 100000000;
 export default () => {
-    const [uid, setUid] = useState(100010001);
+    const [uid, setUid] = useState(initUID);
     const navigate = useNavigate();
 
     return (
@@ -27,7 +28,7 @@ export default () => {
                 </FormField>
                 <Box direction="row" gap="medium">
                     <Button type="submit" primary label="确认" />
-                    <Button type="reset" label="重置" />
+                    <Button type="reset" label="重置" onClick={() => setUid(initUID)} />
                 </Box>
             </Form>
         </Page>
