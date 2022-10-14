@@ -4,13 +4,13 @@ import { isValidUid, isValidCnUid, isValidOsUid } from "../lib/uid";
 
 export default () => {
     const navigate = useNavigate();
-    const [uid, setUid] = useState();
+    const [uid, setUid] = useState(100010001);
     return (
         <div style={{ margin: "auto" }}>
             <input onChange={(e) => setUid(e.target.value)} value={uid} type="number" />
             <button
                 onClick={() => {
-                    if (isValidUid) navigate(`/UserInfo/${uid}`);
+                    if (isValidUid(uid)) navigate(`/UserInfo/${uid}`);
                     else alert("UID 不合法！！！");
                 }}
             >

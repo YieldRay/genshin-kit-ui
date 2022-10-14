@@ -18,6 +18,7 @@ export default () => {
             <Link to="/">Genshin Kit Query</Link>
             <button onClick={changeCookie}> {cookie ? "修改coookie" : "点击填写cookie"}</button>
             <button onClick={changeServer}> 修改服务器</button>
+            <my-btn></my-btn>
         </header>
     );
 };
