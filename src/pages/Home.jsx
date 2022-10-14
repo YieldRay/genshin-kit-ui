@@ -1,21 +1,35 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Form, FormField, Box, Button, TextInput, Page } from "grommet";
 import { isValidUid, isValidCnUid, isValidOsUid } from "../lib/uid";
+import alert from "../components/alert";
 
 export default () => {
-    const navigate = useNavigate();
     const [uid, setUid] = useState(100010001);
+    const navigate = useNavigate();
+
     return (
-        <div style={{ margin: "auto" }}>
-            <input onChange={(e) => setUid(e.target.value)} value={uid} type="number" />
-            <button
-                onClick={() => {
+        <Page pad="medium">
+            <Form
+                onSubmit={({ value }) => {
                     if (isValidUid(uid)) navigate(`/UserInfo/${uid}`);
                     else alert("UID 不合法！！！");
                 }}
             >
-                查询玩家信息
-            </button>
-        </div>
+                <FormField name="name" htmlFor="text-input-id" label="查询玩家信息">
+                    <TextInput
+                        type="number"
+                        id="text-input-id"
+                        value={uid}
+                        onChange={(e) => setUid(e.target.value)}
+                        name="name"
+                    />
+                </FormField>
+                <Box direction="row" gap="medium">
+                    <Button type="submit" primary label="确认" />
+                    <Button type="reset" label="重置" />
+                </Box>
+            </Form>
+        </Page>
     );
 };

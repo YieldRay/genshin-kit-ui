@@ -1,21 +1,12 @@
 import { useState } from "react";
+import { Collapsible } from "grommet";
 
-export default ({ show, hide }) => {
+export default ({ children, header }) => {
     const [open, setOpen] = useState(false);
-
     return (
         <div style={{ background: "#f1ebdb", borderRadius: ".5rem", overflow: "hidden" }}>
-            <div>{show}</div>
-            <div
-                style={{
-                    maxHeight: open ? 300 : 0,
-                    transformOrigin: "0 0",
-                    transition: "all .3s linear",
-                    overflow: "hidden",
-                }}
-            >
-                {hide}
-            </div>
+            {header}
+            <Collapsible open={open}>{children}</Collapsible>
             <div
                 style={{ textAlign: "center", background: "#e6dac2", cursor: "pointer" }}
                 onClick={() => setOpen(!open)}
