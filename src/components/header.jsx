@@ -1,8 +1,13 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Header, Button, TextArea } from "grommet";
+import { Header, Button as GButton, TextArea } from "grommet";
 import config from "../lib/config.js";
 import alert from "./alert.jsx";
+
+function Button(props) {
+    return <GButton primary style={{ padding: "2px 4px", margin: "auto 2px", fontSize: "15px" }} {...props}></GButton>;
+}
+
 export default () => {
     const [cookie, setCookie] = useState(config.cookie);
     const [server, setServer] = useState(config.server);
@@ -33,12 +38,8 @@ export default () => {
             <Header>
                 <Link to="/">Genshin Kit Query</Link>
                 <div>
-                    <Button primary onClick={changeCookie}>
-                        {cookie ? "修改coookie" : "请填写cookie"}
-                    </Button>
-                    <Button primary onClick={changeServer}>
-                        修改服务器
-                    </Button>
+                    <Button onClick={changeCookie}>{cookie ? "修改coookie" : "请填写cookie"}</Button>
+                    <Button onClick={changeServer}>修改服务器</Button>
                 </div>
             </Header>
         </>

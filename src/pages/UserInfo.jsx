@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { gkMethod } from "../lib/gk";
-import { PageHeader, Anchor, Button, Card, Box, Carousel, Spinner } from "grommet";
+import { PageHeader, Button, Card, Box, Carousel } from "grommet";
+import Error from "../components/error";
 import Collapsible from "../components/collapsible";
 import Loading from "../components/loading";
 import "./UserInfo.css";
@@ -17,8 +18,9 @@ export default () => {
             .catch((err) => setErr(err));
     }, [uid]);
 
-    if (err) return <p>错误，请保证已填入有效cookie，且UID须有效</p>;
+    if (err) return <Error>请保证已填入有效cookie，且UID须有效</Error>;
     if (!data) return <Loading />;
+    if (data && !data.role) return <Error>无法查询该用户</Error>;
 
     return (
         <>

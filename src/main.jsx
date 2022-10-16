@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Grommet>
             <HashRouter>
                 <Header />
-                <Box pad="small">
+                <Box pad="small" style={{ minHeight: "85vh" }}>
                     <Routes>
                         <Route path="/" element={<Home />}></Route>
                         <Route path="/UserInfo/:uid" element={<UserInfo />}></Route>
