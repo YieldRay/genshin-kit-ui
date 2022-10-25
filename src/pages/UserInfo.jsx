@@ -132,16 +132,30 @@ export default () => {
                 <div className="worlds slider">
                     {data.world_explorations.map((world) => (
                         <div
-                            key={world.name}
+                            key={world.id}
                             className="world sliderItem"
-                            style={{ backgroundImage: `url(https://cors.deno.dev/${world.cover})` }}
+                            style={{ minHeight: "280px", backgroundImage: `url(https://cors.deno.dev/${world.cover})` }}
                         >
                             <img className="worldIcon" src={world.icon} alt={world.name} />
                             <div className="worldName">{world.name}</div>
                             <div style={{ fontSize: "80%", fontWeight: "lighter" }}>
                                 {Math.round(world.exploration_percentage / 10)}%
                             </div>
-                            <progress value={world.exploration_percentage} max={1000}></progress>
+                            <progress
+                                style={{ display: "block" }}
+                                value={world.exploration_percentage}
+                                max={1000}
+                            ></progress>
+                            {world.type === "Reputation" && (
+                                <>
+                                    声望等级：{world.level}级<br />
+                                </>
+                            )}
+                            {world.offerings.map(({ name, icon, level }) => (
+                                <>
+                                    {name}等级：{level}级<br />
+                                </>
+                            ))}
                         </div>
                     ))}
                 </div>
