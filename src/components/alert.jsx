@@ -10,8 +10,11 @@ if (!el) {
     document.body.appendChild(el);
 }
 
+let root = ReactDOM.createRoot(el);
+
 export default (children, title) => {
-    const root = ReactDOM.createRoot(el);
+    root.unmount();
+    root = ReactDOM.createRoot(el);
     root.render(<Alert title={title}>{children}</Alert>);
 };
 

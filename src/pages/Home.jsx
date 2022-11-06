@@ -4,7 +4,7 @@ import { Form, FormField, Box, Button, TextInput, Page } from "grommet";
 import { isValidUid, isValidCnUid, isValidOsUid } from "../lib/uid";
 import alert from "../components/alert";
 
-const initUID = 100000000;
+const initUID = 100010001;
 export default () => {
     const [uid, setUid] = useState(initUID);
     const navigate = useNavigate();

@@ -147,14 +147,14 @@ export default () => {
                                 max={1000}
                             ></progress>
                             {world.type === "Reputation" && (
-                                <>
+                                <span>
                                     声望等级：{world.level}级<br />
-                                </>
+                                </span>
                             )}
                             {world.offerings.map(({ name, icon, level }) => (
-                                <>
+                                <span key={icon}>
                                     {name}等级：{level}级<br />
-                                </>
+                                </span>
                             ))}
                         </div>
                     ))}

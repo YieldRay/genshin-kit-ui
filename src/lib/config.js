@@ -1,14 +1,14 @@
 export default {
     get cookie() {
-        return localStorage.getItem("cookie");
+        return localStorage.getItem("cookie") || "";
     },
     set cookie(c) {
         localStorage.setItem("cookie", c);
     },
     get server() {
-        return localStorage.getItem("server") || "https://cors-fetch.deno.dev/https://untitled-32515zs0x1ke.runkit.sh/";
+        return localStorage.getItem("server") || "/api/?q=";
     },
     set server(s) {
-        localStorage.setItem(s);
+        localStorage.setItem("server", s);
     },
 };

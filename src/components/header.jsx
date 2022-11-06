@@ -1,44 +1,22 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Header, Button as GButton, TextArea } from "grommet";
+import { Header, Button as GButton } from "grommet";
 import config from "../lib/config.js";
-import alert from "./alert.jsx";
+import alertTextArea from "./alertTextArea.jsx";
 
 function Button(props) {
     return <GButton primary style={{ padding: "2px 4px", margin: "auto 2px", fontSize: "15px" }} {...props}></GButton>;
 }
 
 export default () => {
-    const [cookie, setCookie] = useState(config.cookie);
-    const [server, setServer] = useState(config.server);
-
-    const changeCookie = () => {
-        alert(
-            <TextArea
-                style={{ minWidth: "80vw", minHeight: "40vh" }}
-                value={cookie}
-                onChange={(e) => setCookie(e.target.value)}
-            ></TextArea>,
-            "修改cookie"
-        );
-    };
-    const changeServer = () => {
-        alert(
-            <TextArea
-                style={{ minWidth: "80vw" }}
-                value={server}
-                onChange={(e) => setServer(e.target.value)}
-            ></TextArea>,
-            "修改服务器"
-        );
-    };
+    const changeCookie = () => alertTextArea("修改cookie", config.cookie, (c) => (config.cookie = c));
+    const changeServer = () => alertTextArea("修改服务器", config.server, (s) => (config.server = s));
 
     return (
         <>
             <Header>
                 <Link to="/">Genshin Kit Query</Link>
                 <div>
-                    <Button onClick={changeCookie}>{cookie ? "修改coookie" : "请填写cookie"}</Button>
+                    <Button onClick={changeCookie}>{config.cookie ? "修改coookie" : "请填写cookie"}</Button>
                     <Button onClick={changeServer}>修改服务器</Button>
                 </div>
             </Header>
