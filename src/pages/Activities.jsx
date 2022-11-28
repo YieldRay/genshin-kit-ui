@@ -11,11 +11,11 @@ export default () => {
     const [err, setErr] = useState();
     useEffect(() => {
         if (data) return;
-        gkMethod("getAllCharacters", uid)
+        gkMethod("getActivities", uid)
             .then((result) => setData(result))
             .catch((err) => setErr(err));
     }, [uid]);
-
+    
     if (err) return <Error />;
     if (!data) return <Loading />;
     if (typeof data != "object") return <Error>无法查询该用户</Error>;

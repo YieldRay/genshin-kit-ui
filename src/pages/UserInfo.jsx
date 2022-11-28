@@ -18,7 +18,7 @@ export default () => {
             .catch((err) => setErr(err));
     }, [uid]);
 
-    if (err) return <Error>请保证已填入有效cookie，且UID须有效</Error>;
+    if (err) return <Error />;
     if (!data) return <Loading />;
     if (data && !data.role) return <Error>无法查询该用户</Error>;
 

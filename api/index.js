@@ -58,15 +58,17 @@ const handlers = {
         const uid = req.uid;
         res.json(await gk.getUserInfo(uid, Boolean(req.body.noCache)));
     },
-
     async getAllCharacters(req, res) {
         const uid = req.uid;
         res.json(await gk.getAllCharacters(uid, Boolean(req.body.noCache)));
     },
-
     async getActivities(req, res) {
         const uid = req.uid;
         res.json(await gk.getActivities(uid, Boolean(req.body.noCache)));
+    },
+    async getDailyNote(req, res) {
+        const uid = req.uid;
+        res.json(await gk.getDailyNote(uid, Boolean(req.body.noCache)));
     },
     async getSpiralAbyss(req, res) {
         const uid = req.uid;
@@ -150,5 +152,6 @@ export default async function (req, res) {
         }
     } catch (e) {
         console.error(new Date().toLocaleString(), url.toString(), e);
+        res.sendStatus(403).send();
     }
 }

@@ -16,15 +16,17 @@ export default () => {
             .catch((err) => setErr(err));
     }, [uid]);
 
-    if (err) return <Error>请保证已填入有效cookie，且UID须有效</Error>;
+    if (err) return <Error />;
     if (!data) return <Loading />;
     if (data && !data.schedule_id) return <Error>无法查询该用户</Error>;
     return (
         <div>
             <Text>统计周期：{`${formatDate(data.start_time)}-${formatDate(data.end_time)}`}</Text>
             <Card>
-                <CardHeader pad="small">挑战回顾</CardHeader>
-                <CardBody></CardBody>
+                <Box pad="medium">
+                    <CardHeader pad="small">挑战回顾</CardHeader>
+                    <CardBody>当前由于API限制，无法查询详细信息</CardBody>
+                </Box>
             </Card>
             {data.floors.map((floor) => (
                 <Floor key={floor.index} floor={floor}></Floor>
@@ -69,7 +71,7 @@ function Floor({ floor }) {
                     <Avatar background="brand">{floor.index}</Avatar>
                     <Text>{`深境螺旋第${formatNumber(floor.index)}层`}</Text>
                 </Box>
-                <Star>{`${floor.index}/9`}</Star>
+                <Star>{`${floor.star}/${floor.max_star}`}</Star>
             </CardHeader>
             <CardBody pad="medium">
                 {floor.levels.map((level) => (

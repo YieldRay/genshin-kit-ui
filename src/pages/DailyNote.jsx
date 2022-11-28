@@ -11,7 +11,7 @@ export default () => {
     const [err, setErr] = useState();
     useEffect(() => {
         if (data) return;
-        gkMethod("getAllCharacters", uid)
+        gkMethod("getDailyNote", uid)
             .then((result) => setData(result))
             .catch((err) => setErr(err));
     }, [uid]);
