@@ -4,8 +4,33 @@ import { Form, FormField, Box, Button, TextInput, Page, Heading, Select } from "
 import { isValidUid, isValidCnUid, isValidOsUid } from "../lib/uid";
 import alert from "../components/alert";
 
-const initUID = 100010001;
+function initUIDFunc(uid) {
+    if (uid) {
+        localStorage.setItem("initUID", uid);
+        return uid;
+    }
+    const local = localStorage.getItem("initUID");
+    if (!Boolean(local)) return 100010001;
+    const parsed = Number(local);
+    if (isNaN(parsed)) return 100010001;
+    if (!isValidUid(parsed)) return 100010001;
+    return parsed;
+}
+
+function initPageNameFunc(pageNameOrObj) {
+    if (typeof pageNameOrObj === "string") {
+        localStorage.setItem("initPageName", pageNameOrObj);
+        return pageNameOrObj;
+    }
+    const firstOne = Object.keys(pageNameOrObj)[0];
+    const local = localStorage.getItem("initPageName");
+    if (!Boolean(local)) return firstOne;
+    if (Object.keys(pageNameOrObj).includes(local)) return local;
+    return firstOne;
+}
+
 export default () => {
+    const initUID = initUIDFunc();
     const [uid, setUid] = useState(initUID);
 
     const selectOptionsMap = {
@@ -15,9 +40,10 @@ export default () => {
         活动信息: "Activities",
         日常信息: "DailyNote",
     };
+    const initPageName = initPageNameFunc(selectOptionsMap);
 
-    const [pageName, setPageName] = useState(Object.keys(selectOptionsMap)[0]);
-    const [pageValue, setPageValue] = useState(Object.values(selectOptionsMap)[0]);
+    const [pageName, setPageName] = useState(initPageName);
+    const [pageValue, setPageValue] = useState(selectOptionsMap[pageName]);
     const navigate = useNavigate();
 
     return (
@@ -41,7 +67,10 @@ export default () => {
                             type="number"
                             id="text-input-id"
                             value={uid}
-                            onChange={(e) => setUid(e.target.value)}
+                            onChange={(e) => {
+                                setUid(e.target.value);
+                                initUIDFunc(e.target.value);
+                            }}
                             name="name"
                         />
                     </FormField>
@@ -50,6 +79,7 @@ export default () => {
                         value={pageName}
                         onChange={({ option }) => {
                             setPageName(option);
+                            initPageNameFunc(option);
                             setPageValue(selectOptionsMap[option]);
                         }}
                         style={{ flex: "1", maxWidth: "33.33vw" }}
